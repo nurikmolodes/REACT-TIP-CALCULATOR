@@ -92,6 +92,10 @@ label {
   width: 100%;
   gap: 1rem;
 }
+.tip-btn {
+  display: flex;
+  gap: 10px;
+}
 .tip-btns button {
   width: 90px;
   color: var(--White);
