@@ -60,6 +60,13 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  position: relative;
+}
+.people-sec span {
+  position: absolute;
+  right: 0;
+  font-size: 13px;
+  color: red;
 }
 .inputs-section {
   gap: 2rem;

@@ -7,7 +7,7 @@ function App() {
 
   // ALL THE STATES 
   const [bill, setBill] = useState(null);
-  const [people, setPeople] = useState(1)
+  const [people, setPeople] = useState(null)
   const [custom, setCustom] = useState('Custom')
   const [selected, setSelected] = useState(0);
   const [isSelected, setIsSelected] = useState(null)
@@ -55,7 +55,7 @@ function App() {
   const handlePeople = (value) => {
     const min = 1
     const validation = Math.max(min, Number(value))
-    setPeople(validation)
+    setPeople(value)
   }
   const handleSelect = (item, e) => {
     setIsSelected(item);
@@ -98,8 +98,9 @@ function App() {
             </div>
             <div class="people-sec">
               <label for="people">Number of People</label>
+              <span>{people == 0 && "Can't be zero"}</span>
               <div className="people-input">
-                <input value={people} onChange={(e) => handlePeople(e.target.value)} type="number" placeholder="0" id="people" />
+                <input style={people == 0 ? {outlineColor: 'red'} : null} value={people} onChange={(e) => handlePeople(e.target.value)} type="number" placeholder="0" id="people" />
                 <img src={iconPerson} alt="person" />
               </div>
             </div>
@@ -107,11 +108,11 @@ function App() {
           <div className="outputs-section">
             <div className="tip-amount">
               <p>Tip Amount<br /><span>/ person</span></p>
-              <h2 id="tipAmount">${parseInt(tipAmount / (people))}</h2>
+              <h2 id="tipAmount">${parseInt(tipAmount / (people)) || 0}</h2>
             </div>
             <div className="total">
               <p>Total<br /><span>/ person</span></p>
-              <h2 id="total">${parseInt(total / people)}</h2>
+              <h2 id="total">${parseInt(total / people) || 0}</h2>
             </div>
             <button onClick={resetEverything} class="reset-btn" id="resetBtn">Reset</button>
           </div>
