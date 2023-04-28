@@ -4,9 +4,13 @@ import iconDollar from '../src/assets/icon-dollar.svg';
 import iconPerson from '../src/assets/icon-person.svg'
 
 function App() {
-  const [bill, setBill] = useState(0);
-  const [people, setPeople] = useState(1);
-  const [custom, setCustom] = useState(0);
+
+  // ALL THE STATES 
+  const [bill, setBill] = useState(null);
+  const [people, setPeople] = useState(1)
+  const [custom, setCustom] = useState('Custom')
+  const [selected, setSelected] = useState(0);
+  const [isSelected, setIsSelected] = useState(null)
   const [percentages, setPercentages] = useState([
     {
       id: 1,
@@ -35,17 +39,32 @@ function App() {
     },
   ]);
 
+  // FUNCTIONS 
   const resetEverything = () => {
     setSelected(0)
     setBill(0)
-    setPeople(0)
+    setPeople(1)
     setCustom(0)
-    console.log('clicked');
   }
-  console.log(percentages);
-  const [selected, setSelected] = useState(0);
-  const [isSelected, setIsSelected] = useState(null)
-  const tipAmount = (bill * (selected / 100)) / people
+
+  const handleCustom = (value) => {
+    setCustom(value)
+    setSelected(value)
+    setIsSelected(null)
+  }
+  const handlePeople = (value) => {
+    const min = 1
+    const validation = Math.max(min, Number(value))
+    setPeople(validation)
+  }
+  const handleSelect = (item, e) => {
+    setIsSelected(item);
+    setCustom('Custom')
+    setSelected(item.percentage);
+  }
+
+  // CALCULATONS 
+  const tipAmount = (bill * (selected / 100))
   const total = parseInt(Number(bill) + Number(tipAmount))
 
   return (
@@ -60,7 +79,7 @@ function App() {
             <div className="bill-sec">
               <label for="bill">Bill</label>
               <div className="bill-input">
-                <input onChange={(e) => setBill(e.target.value)} type="number" placeholder="0" id="bill" />
+                <input value={bill} onChange={(e) => setBill(e.target.value)} type="number" placeholder="0" id="bill" />
                 <img src={iconDollar} alt="person" />
               </div>
             </div>
@@ -70,17 +89,17 @@ function App() {
                 <div className='tip-btn'>
                   {percentages.map((item, i) => {
                     return (
-                      <button className={`${isSelected === item ? "isSelected" : null}`} key={item} onClick={(e) => { setSelected(item.percentage); setIsSelected(item) }}>{item.percentage}%</button>
+                      <button className={`${isSelected === item ? "isSelected" : null}`} key={item.id} onClick={(e) => handleSelect(item, e)}>{item.percentage}%</button>
                     )
                   })}
-                  <input value={custom} onChange={(e) => setCustom(e.target.value)} type="number" placeholder="Custom" id="custom" />
+                  <input value={custom} onChange={(e) => handleCustom(e.target.value)} type="number" placeholder="Custom" id="custom" />
                 </div>
               </div>
             </div>
             <div class="people-sec">
               <label for="people">Number of People</label>
               <div className="people-input">
-                <input value={people} onChange={(e) => setPeople(e.target.value)} type="text" placeholder="0" id="people" />
+                <input value={people} onChange={(e) => handlePeople(e.target.value)} type="number" placeholder="0" id="people" />
                 <img src={iconPerson} alt="person" />
               </div>
             </div>
@@ -88,7 +107,7 @@ function App() {
           <div className="outputs-section">
             <div className="tip-amount">
               <p>Tip Amount<br /><span>/ person</span></p>
-              <h2 id="tipAmount">${parseInt(tipAmount / people)}</h2>
+              <h2 id="tipAmount">${parseInt(tipAmount / (people))}</h2>
             </div>
             <div className="total">
               <p>Total<br /><span>/ person</span></p>
