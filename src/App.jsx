@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './App.css'
+import iconDollar from '../src/assets/icon-dollar.svg';
+import iconPerson from '../src/assets/icon-person.svg'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,7 +19,7 @@ function App() {
               <label for="bill">Bill</label>
               <div class="bill-input">
                 <input type="text" placeholder="0" id="bill" />
-                <img src="./src/assets/icon-dollar.svg" alt="person" />
+                <img src={iconDollar} alt="person" />
               </div>
             </div>
             <div class="tip-sec">
@@ -39,7 +41,7 @@ function App() {
               <label for="people">Number of People</label>
               <div class="people-input">
                 <input type="text" placeholder="0" id="people" />
-                <img src="./src/assets/icon-person.svg" alt="person" />
+                <img src={iconPerson} alt="person" />
               </div>
             </div>
           </div>
