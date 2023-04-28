@@ -29,11 +29,13 @@ body {
   letter-spacing: 3px;
   text-align: center;
   margin-bottom: 65px;
+  animation: fadeInAnimation 3s;
 }
 .card {
   background-color: var(--White);
   width: 700px;
   border-radius: 1rem;
+  animation: fadeInAnimation 3s;
 }
 .card-container {
   display: flex;
@@ -202,4 +204,13 @@ label {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   display: none;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
