@@ -4,13 +4,20 @@ import Input from './MiniCards/Input';
 import Output from './MiniCards/Output';
 
 const Card: React.FC = () => {
+
+    interface percentage {
+        id: number,
+        percentage: number,
+        isSelected: boolean
+    }
+
     // ALL THE STATES 
     const [bill, setBill] = useState<number>(0);
     const [people, setPeople] = useState<number>(1)
-    const [custom, setCustom] = useState<any>(null)
+    const [custom, setCustom] = useState<number | string>(0)
     const [selected, setSelected] = useState<number>(0);
-    const [isSelected, setIsSelected] = useState<boolean>(false)
-    const [percentages, setPercentages] = useState<object[]>([
+    const [isSelected, setIsSelected] = useState<boolean | object>(false)
+    const [percentages, setPercentages] = useState<percentage[]>([
         {
             id: 1,
             percentage: 5,
@@ -46,15 +53,12 @@ const Card: React.FC = () => {
         setCustom(0)
     }
 
-    const handleCustom = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleCustom = (e) => {
         setCustom(e.target.value)
         setSelected(e.target.value)
-        setIsSelected(null)
+        setIsSelected(false)
     }
-    const handlePeople = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPeople(e.target.value)
-    }
-    const handleSelect = (item, e) => {
+    const handleSelect = (item) => {
         setIsSelected(item);
         setCustom('')
         setSelected(item.percentage);
@@ -62,7 +66,7 @@ const Card: React.FC = () => {
 
     // CALCULATONS 
     const tipAmount: number = (bill * (selected / 100))
-    const total: number = parseInt(Number(bill) + Number(tipAmount))
+    const total: number = (Number(bill) + Number(tipAmount)) / people
     return (
         <div>
             <h2 className="title">
@@ -71,7 +75,7 @@ const Card: React.FC = () => {
             </h2>
             <div className="card">
                 <div className="card-container">
-                    <Input bill={bill} custom={custom} handlePeople={handlePeople} handleSelect={handleSelect} isSelected={isSelected} people={people} percentages={percentages} setBill={setBill} handleCustom={handleCustom} />
+                    <Input bill={bill} custom={custom} setPeople={setPeople} handleSelect={handleSelect} isSelected={isSelected} people={people} percentages={percentages} setBill={setBill} handleCustom={handleCustom} />
                     <Output people={people} resetEverything={resetEverything} tipAmount={tipAmount} total={total} />
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-interface OutputProps {
+type OutputProps = {
   tipAmount: number;
   people: number;
   total: number;
@@ -21,7 +21,7 @@ const Output: React.FC<OutputProps> = ({
           <br />
           <span>/ person</span>
         </p>
-        <h2 id="tipAmount">${parseInt(tipAmount / people) || 0}</h2>
+        <h2 id="tipAmount">${(tipAmount / people)}</h2>
       </div>
       <div className="total">
         <p>
@@ -29,9 +29,9 @@ const Output: React.FC<OutputProps> = ({
           <br />
           <span>/ person</span>
         </p>
-        <h2 id="total">${parseInt(total / people) || 0}</h2>
+        <h2 id="total">${total}</h2>
       </div>
-      <button onClick={resetEverything} class="reset-btn" id="resetBtn">
+      <button onClick={resetEverything} className="reset-btn" id="resetBtn">
         Reset
       </button>
     </div>
