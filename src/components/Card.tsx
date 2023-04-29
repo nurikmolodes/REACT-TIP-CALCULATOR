@@ -3,14 +3,14 @@ import { useState } from 'react'
 import Input from './MiniCards/Input';
 import Output from './MiniCards/Output';
 
-const Card = () => {
+const Card: React.FC = () => {
     // ALL THE STATES 
-    const [bill, setBill] = useState(null);
-    const [people, setPeople] = useState(null)
-    const [custom, setCustom] = useState(null)
-    const [selected, setSelected] = useState(0);
-    const [isSelected, setIsSelected] = useState(null)
-    const [percentages, setPercentages] = useState([
+    const [bill, setBill] = useState<number>(0);
+    const [people, setPeople] = useState<number>(1)
+    const [custom, setCustom] = useState<any>(null)
+    const [selected, setSelected] = useState<number>(0);
+    const [isSelected, setIsSelected] = useState<boolean>(false)
+    const [percentages, setPercentages] = useState<object[]>([
         {
             id: 1,
             percentage: 5,
@@ -46,13 +46,13 @@ const Card = () => {
         setCustom(0)
     }
 
-    const handleCustom = (value) => {
-        setCustom(value)
-        setSelected(value)
+    const handleCustom = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setCustom(e.target.value)
+        setSelected(e.target.value)
         setIsSelected(null)
     }
-    const handlePeople = (value) => {
-        setPeople(value)
+    const handlePeople = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setPeople(e.target.value)
     }
     const handleSelect = (item, e) => {
         setIsSelected(item);
@@ -61,8 +61,8 @@ const Card = () => {
     }
 
     // CALCULATONS 
-    const tipAmount = (bill * (selected / 100))
-    const total = parseInt(Number(bill) + Number(tipAmount))
+    const tipAmount: number = (bill * (selected / 100))
+    const total: number = parseInt(Number(bill) + Number(tipAmount))
     return (
         <div>
             <h2 className="title">
