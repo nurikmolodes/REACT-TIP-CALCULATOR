@@ -19,8 +19,8 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint"],
   rules: {
-    quotes: [0, "single", { avoidEscape: true, allowTemplateLiterals: true }],
-    "linebreak-style": 0,
+    quotes: [1, "single", { avoidEscape: true, allowTemplateLiterals: true }],
+    "linebreak-style": 1,
   },
   "react/function-component-definition": [
     2,
