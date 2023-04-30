@@ -11,7 +11,7 @@ This is a solution to the [Tip calculator app challenge on Frontend Mentor](http
 - [My process](#my-process)
   - [Built with](#built-with)
 - [Author](#author)
-- [How to run an application]
+- [How to run an application](#how-to-run-an-application)
 
 ## Overview
 
@@ -26,7 +26,6 @@ Users should be able to:
 ### Screenshot
 
 ![](./src/assets/screenshot.jpg)
-
 
 ### Links
 
@@ -49,10 +48,9 @@ Users should be able to:
 - Portfolio Website - [Nursultan Ainidinov](https://nurikmolodes.netlify.app/)
 
 - LinkedIn - (https://www.linkedin.com/in/nursultan-ainidinov-9949b1245/)
+
 ## How to run an application
 
 npm install
 
 npm run dev
-
-
