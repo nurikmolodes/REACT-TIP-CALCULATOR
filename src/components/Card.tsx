@@ -66,6 +66,7 @@ const Card: React.FC = () => {
   // CALCULATONS
   const tipAmount: number = bill * (selected / 100)
   const total: number = people > 0 ? (Number(bill) + Number(tipAmount)) / people : 0
+
   return (
     <div>
       <h2 className="title">

@@ -28,7 +28,7 @@ const Output: React.FC<OutputProps> = ({
         <br />
         <span>/ person</span>
       </p>
-      <h2 id="total">${total.toFixed()}</h2>
+      <h2 id="total" data-testid='bill'>${total.toFixed()}</h2>
     </div>
     <button onClick={resetEverything} className="reset-btn" id="resetBtn">
       Reset

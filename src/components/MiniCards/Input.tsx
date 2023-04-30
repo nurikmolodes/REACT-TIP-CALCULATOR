@@ -17,7 +17,7 @@ type InputProps = {
   setBill: any;
   isSelected: boolean | object;
   handleSelect: any;
-  handleCustom: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleCustom: any;
 };
 
 const Input: React.FC<InputProps> = ({
